@@ -18,22 +18,23 @@ public class CustomPlanetInspector : Editor{
         EditorGUILayout.LabelField("");
 
         EditorGUILayout.BeginVertical("Box");
-        myTarget.isHabitable = EditorGUILayout.BeginToggleGroup ("Habitable", myTarget.isHabitable);
+        myTarget.isHabitable = EditorGUILayout.BeginToggleGroup (new GUIContent("Habitable", "Can things live here?" ), myTarget.isHabitable);
         if (myTarget.isHabitable == false)
         {
             myTarget.fauna = false;
             myTarget.flora = false;
         }
 
-        myTarget.flora = EditorGUILayout.BeginToggleGroup("Flora", myTarget.flora);
+        myTarget.flora = EditorGUILayout.BeginToggleGroup(new GUIContent("Flora", "Plant Life" ),myTarget.flora);
 
         if (myTarget.flora == false)
         {
             myTarget.fauna = false;
         }
 
-        myTarget.fauna = EditorGUILayout.Toggle("Fauna", myTarget.fauna);
+        myTarget.fauna = EditorGUILayout.BeginToggleGroup(new GUIContent("Fauna", "Animal Life" ), myTarget.fauna);
 
+        EditorGUILayout.EndToggleGroup();
         EditorGUILayout.EndToggleGroup();
         EditorGUILayout.EndToggleGroup();
 
@@ -84,12 +85,12 @@ public class CustomPlanetInspector : Editor{
         EditorGUILayout.LabelField("Amount of Moons");
         myTarget.moonAmount = EditorGUILayout.IntField(myTarget.moonAmount);
 
-        EditorGUILayout.LabelField("Lowest Elevation");
+        EditorGUILayout.LabelField(new GUIContent("Lowest Elevation", "Measured in miles"));
         myTarget.lowElevation = EditorGUILayout.FloatField(myTarget.lowElevation);
-        EditorGUILayout.LabelField("Highest Elevation");
+        EditorGUILayout.LabelField(new GUIContent("Highest Elevation", "Measured in miles"));
         myTarget.highElevation = EditorGUILayout.FloatField(myTarget.highElevation);
 
-        EditorGUILayout.LabelField("Radiation Levels");
+        EditorGUILayout.LabelField(new GUIContent("Radiation Levels", "Measured in MSV"));
         myTarget.radiationAmount = EditorGUILayout.FloatField(myTarget.radiationAmount);
 
         serializedObject.Update();
